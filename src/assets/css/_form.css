@@ -32,6 +32,10 @@
     line-height: var(--formItemHeight);
   }
 
+  @descendent item {
+    margin-top: 10px;
+  }
+
   @descendent input {
     @mixin generateFormItem;
   }
@@ -52,21 +56,20 @@
   }
 
   @modifier horizontal {
-    display: flex;
-    justify-content: flex-start;
-    align-items: stretch;
 
+    & .iridium-form-item {
+      display: flex;
+      justify-content: flex-start;
+      align-items: stretch;
+    }
     & .iridium-form-label {
       flex-shrink: 0;
     }
     & .iridium-form-input,
     & .iridium-form-textarea {
       flex-grow: 1;
+      clear: both;
     }
-  }
-
-  &.center {
-    text-align: center;
   }
 
 }

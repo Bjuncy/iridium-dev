@@ -54,6 +54,7 @@
   --headingLevel6: var(--fontSmallest);
 
   /* padding definition */
+  --paddingHorizontal: var(--fontSmallest);
   --paddingBase: calc(var(--fontSmallest) * 0.5) var(--fontSmallest);
   --paddingSmaller: calc(var(--fontLarger) * 0.3125) calc(var(--fontLarger) * 0.625);
   --paddingSmallest: 1px 5px 2px;

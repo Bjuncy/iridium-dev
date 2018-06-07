@@ -16,6 +16,7 @@
     color: inherit;
     cursor: pointer;
     line-height: var(--formItemHeight);
+    padding: 0 var(--paddingHorizontal);
 
     &:hover {
       color: var(--white);
