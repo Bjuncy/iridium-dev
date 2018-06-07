@@ -1,0 +1,25 @@
+@component dropdown {
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  list-style: none;
+  margin: 1px;
+  padding: 0;
+  width: 100%;
+
+  &:focus,
+  &:hover {
+    border-color: var(--primaryColor);
+  }
+
+  @descendent option {
+    background: var(--white);
+    color: inherit;
+    cursor: pointer;
+    line-height: var(--formItemHeight);
+
+    &:hover {
+      color: var(--white);
+      background: var(--primaryColor);
+    }
+  }
+}

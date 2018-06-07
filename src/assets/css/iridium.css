@@ -1,0 +1,53 @@
+@import '_reset.css';
+@import '_variables.css';
+@import '_color.css';
+@import '_heading.css';
+@import '_scrollbar.css';
+@import '_button.css';
+@import '_badge.css';
+@import '_form.css';
+@import '_select.css';
+@import '_dropdown.css';
+@import '_table.css';
+@import '_animation.css';
+@import '_fontAwesome.css';
+@import '_fontGlyphicons.css';
+
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bgColor);
+  color: #2c3e50;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.font-larger {
+  font-size: var(--fontLarger);
+}

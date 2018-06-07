@@ -1,0 +1,218 @@
+/* define btn mixin */
+@define-mixin initBtn generator, $color: white {
+  background: transparent linear-gradient(hsla(0, 0%, 100%, .2), transparent);
+  border: 1px solid transparent;
+  border-radius: var(--borderRadius);
+  box-sizing: border-box;
+  color: $color;
+  cursor: pointer;
+  font-size: var(--fontBase);
+  margin: 1px;
+  outline: 0;
+  padding: var(--paddingBase);
+  transition: all var(--transitionDuration) var(--transitionTimingFuction);
+
+  @modifier smallest {
+    font-size: var(--fontSmallest);
+    padding: 1px 5px 2px;
+  }
+
+  @modifier smaller {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  @modifier larger {
+    font-size: var(--fontLarger);
+    padding: 10px 16px;
+  }
+
+  @modifier full {
+    width: 100%;
+  }
+
+}
+
+/* define normal buttons mixin */
+@define-mixin generateBtn $lightColor, $normalColor, $darkColor {
+  background-color: var($lightColor);
+  border-color: var($lightColor);
+
+  &:hover, 
+  &:focus {
+    background-color: var($normalColor);
+    border-color: var($normalColor);
+  }
+  &:active {
+    background-color: var($darkColor);
+    border-color: var($darkColor);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, .1);
+  }
+  &.disabled,
+  &:disabled {
+    background-color: var($lightColor);
+    border-color: var($lightColor);
+    pointer-events: none;
+    filter: opacity(var(--disabledOpacity));
+  }
+}
+
+/* define outline buttons mixin */
+@define-mixin generateOutlineBtn $lightColor, $normalColor, $darkColor {
+  background: transparent;
+  border-color: var($lightColor);
+  color: var($lightColor);
+
+  &:hover, 
+  &:focus {
+    background-color: var($normalColor);
+    border-color: var($normalColor);
+    color: var(--white);
+  }
+  &:active {
+    background-color: var($darkColor);
+    border-color: var($darkColor);
+    box-shadow: inset 0 2px 3px rgba(0, 0, 0, .1);
+    color: var(--white);
+  }
+  &.disabled,
+  &:disabled {
+    background: transparent;
+    border-color: var($lightColor);
+    color: var($lightColor);
+    pointer-events: none;
+    filter: opacity(var(--disabledOpacity));
+  }
+}
+
+/* component btn */
+@component btn {
+  @mixin initBtn;
+
+  @modifier white {
+    @mixin generateBtn --whiteColorLight, --whiteColor, --whiteColorDark;
+    background: var(--white);
+    color: var(--fontColorDark);
+    &:hover, &:active {
+      background: var(--white);
+    }
+    &.disabled,
+    &:disabled {
+      background: var(--white);
+      color: var(--fontColorDark);
+      pointer-events: none;
+      filter: opacity(var(--disabledOpacity));
+    }
+  }
+
+  @modifier default {
+    @mixin generateBtn --defaultColorLight, --defaultColor, --defaultColorDark;
+  }
+  
+  @modifier primary {
+    @mixin generateBtn --primaryColorLight, --primaryColor, --primaryColorDark;
+  }
+
+  @modifier success {
+    @mixin generateBtn --successColorLight, --successColor, --successColorDrak;
+  }
+
+  @modifier info {
+    @mixin generateBtn --infoColorLight, --infoColor, --infoColorDark;
+  }
+
+  @modifier warning {
+    @mixin generateBtn --warningColorLight, --warningColor, --warningColorDark;
+  }
+
+  @modifier danger {
+    @mixin generateBtn --dangerColorLight, --dangerColor, --dangerColorDark;
+  }
+
+  @modifier link {
+    background: transparent;
+    border: 0;
+    color: var(--fontColorNormal);
+
+    &:hover, 
+    &:focus, 
+    &:active {
+      background: transparent;
+      color: var(--primaryColorLight);
+    }
+    &.disabled,
+    &:disabled {
+      color: var(--fontColorNormal);
+      pointer-events: none;
+      filter: opacity(var(--disabledOpacity));
+    }
+  }
+
+}
+
+/* component outline-btn */
+@component btn-outline {
+  @mixin initBtn;
+
+  @modifier default {
+    @mixin generateOutlineBtn --defaultColorLight, --defaultColor, --defaultColorDark;
+    color: var(--fontColorNormal);
+  }
+  
+  @modifier primary {
+    @mixin generateOutlineBtn --primaryColorLight, --primaryColor, --primaryColorDark;
+  }
+
+  @modifier success {
+    @mixin generateOutlineBtn --successColorLight, --successColor, --successColorDrak;
+  }
+
+  @modifier info {
+    @mixin generateOutlineBtn --infoColorLight, --infoColor, --infoColorDark;
+  }
+
+  @modifier warning {
+    @mixin generateOutlineBtn --warningColorLight, --warningColor, --warningColorDark;
+  }
+
+  @modifier danger {
+    @mixin generateOutlineBtn --dangerColorLight, --dangerColor, --dangerColorDark;
+  }
+
+}
+
+/* component outline-btn */
+@component btn-group {
+  overflow: hidden;
+  margin: 1px;
+
+  & .iridium-btn,
+  & .iridium-btn-outline {
+    float: left;
+    margin: 0;
+
+    &.active {
+      background: var(--defaultColorDark);
+      border-color: var(--defaultColorDark);
+      color: var(--white);
+    }
+  }
+
+
+  @modifier first {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  @modifier mid {
+    border-radius: 0;
+    border-left: 0;
+  }
+
+  @modifier last {
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+}

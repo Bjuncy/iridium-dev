@@ -1,0 +1,73 @@
+/* define form item mixin */
+@define-mixin generateFormItem {
+  display: inline;
+  background: var(--white);
+  border: 1px solid var(--borderColor);
+  box-sizing: border-box;
+  min-width: var(--formItemMinWidth);
+  height: var(--formItemHeight);
+  margin: 1px;
+  outline: 0;
+  padding: var(--paddingBase);
+  transition: all var(--transitionDuration) var(--transitionTimingFuction);
+
+  &:hover,
+  &:focus,
+  &:active {
+    border: 1px solid var(--primaryColor);
+  }
+  &.disabled,
+  &:disabled {
+    border: 1px solid var(--borderColor);
+    pointer-events: none;
+    filter: opacity(var(--disabledOpacity));
+  }
+}
+
+@component form {
+  text-align: left;
+
+  @descendent label {
+    display: inline;
+    line-height: var(--formItemHeight);
+  }
+
+  @descendent input {
+    @mixin generateFormItem;
+  }
+
+  @descendent textarea {
+    @mixin generateFormItem;
+    resize: none;
+  }
+  
+  @modifier vertical {
+
+    & .iridium-form-label, 
+    & .iridium-form-input, 
+    & .iridium-form-textarea {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  @modifier horizontal {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+
+    & .iridium-form-label {
+      flex-shrink: 0;
+    }
+    & .iridium-form-input,
+    & .iridium-form-textarea {
+      flex-grow: 1;
+    }
+  }
+
+  &.center {
+    text-align: center;
+  }
+
+}
+
