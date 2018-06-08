@@ -37,7 +37,7 @@ export default {
     },
     isRouter (item) {
       if (!this.router) return false
-      return { name: '/' }
+      return { name: item.href }
     }
   }
 }

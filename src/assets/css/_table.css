@@ -40,8 +40,13 @@
 
   @modifier hover {
     & tbody .iridium-table-row:hover .iridium-table-item {
+      cursor: pointer;
       background: var(--tableTitleBgColor);
     }
+  }
+
+  @modifier center {
+    text-align: center;
   }
 
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="iridium-header-user">
-    <header-icons :labels="iconLabels" :router="true"/>
+    <header-icons :router="true"/>
     <div class="iridium-header-user-info">
       <a class="iridium-header-user-avatar">
         <img :src="'http://baojie.owl1024.com/assets/img/profile_small.jpg'" alt="" width="40px" height="40px" />
