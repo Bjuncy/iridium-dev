@@ -2,7 +2,6 @@
 @define-mixin initBtn generator, $color: white {
   background: transparent linear-gradient(hsla(0, 0%, 100%, .2), transparent);
   border: 1px solid transparent;
-  border-radius: var(--borderRadius);
   box-sizing: border-box;
   color: $color;
   cursor: pointer;
@@ -29,6 +28,10 @@
 
   @modifier full {
     width: 100%;
+  }
+
+  @modifier radius {
+    border-radius: var(--borderRadius);
   }
 
 }
@@ -89,22 +92,6 @@
 @component btn {
   @mixin initBtn;
 
-  @modifier white {
-    @mixin generateBtn --whiteColorLight, --whiteColor, --whiteColorDark;
-    background: var(--white);
-    color: var(--fontColorDark);
-    &:hover, &:active {
-      background: var(--white);
-    }
-    &.disabled,
-    &:disabled {
-      background: var(--white);
-      color: var(--fontColorDark);
-      pointer-events: none;
-      filter: opacity(var(--disabledOpacity));
-    }
-  }
-
   @modifier default {
     @mixin generateBtn --defaultColorLight, --defaultColor, --defaultColorDark;
   }
@@ -155,8 +142,14 @@
   @mixin initBtn;
 
   @modifier default {
-    @mixin generateOutlineBtn --defaultColorLight, --defaultColor, --defaultColorDark;
-    color: var(--fontColorNormal);
+    @mixin generateOutlineBtn --borderColor, --whiteColor, --whiteColorDark;
+    color: #777;
+    &:focus,
+    &:hover,
+    &:active {
+      border-color: var(--borderColor);
+      color: #777;
+    }
   }
   
   @modifier primary {
