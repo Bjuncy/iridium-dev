@@ -26,6 +26,20 @@ a {
     font-size: 100%;
     vertical-align: baseline;
     background:  transparent;
+    color: var(--aDefaultColor);
+    display: inline-block;
+}
+a:hover{
+    color: var(--aHoverColor);
+    background: var(--aHoverBgColor);
+}
+.aDisable:hover{
+    color: var(--aDefaultColor);
+    background: var(--bgColor);
+    cursor:not-allowed;
+}
+.aCurrent{
+    background: var(--bgColor);
 }
 img {
     width: 100%;
@@ -33,3 +47,7 @@ img {
 input, select {
     vertical-align: middle;
 }
+ul,li{
+    list-style: none;
+}
+

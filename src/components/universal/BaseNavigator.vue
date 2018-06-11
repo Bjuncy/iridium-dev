@@ -118,7 +118,7 @@ export default {
           sub: [
             {
               name: '考勤日报表',
-              href: 'dailySheet'
+              href: 'DailySheet'
             },
             {
               name: '考勤月报表',

@@ -51,3 +51,8 @@ body {
 .font-larger {
   font-size: var(--fontLarger);
 }
+.flex-1{
+  flex: 1;
+}
+
+

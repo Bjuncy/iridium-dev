@@ -7,7 +7,7 @@ import store from './store'
 import Api from './api'
 import { Modal } from 'iview'
 import 'jquery'
-// import 'iview/dist/styles/iview.css'
+import 'iview/dist/styles/iview.css'
 
 Vue.config.productionTip = false
 

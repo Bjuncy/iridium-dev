@@ -30,7 +30,6 @@
   @descendent label {
     display: inline;
     line-height: var(--formItemHeight);
-    font-size: var(--fontSmaller);
   }
 
   @descendent item {
