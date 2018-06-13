@@ -9,7 +9,7 @@ select {
   }
 }
 select {
-  background: url("../images/icons/select-arrow.svg") no-repeat scroll right center / 12% 60% var(--white);
+  background: url("../images/icons/select-arrow.svg") no-repeat scroll right center / 6% auto var(--white);
   border: 1px solid #000000;
   &::-webkit-clear-button {
     display: none;
@@ -20,7 +20,7 @@ select {
  /* format style */
   width: 100%;
   border: 1px solid var(--borderColor);
-  background: url("../images/icons/select-arrow.svg") no-repeat scroll right center / 12% 60% var(--white);
+  background: url("../images/icons/select-arrow.svg") no-repeat scroll right center / 6% auto var(--white);
   box-sizing: border-box;
   cursor: pointer;
   height: var(--formItemHeight);

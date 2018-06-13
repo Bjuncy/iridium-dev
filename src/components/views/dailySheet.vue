@@ -17,11 +17,11 @@
           </div>
         </div>
         <div class="iridium-daily-sheet-label">
+          <div class="iridium-daily-sheet-label-name">工作时段：</div>
           <div class="iridium-daily-sheet-date iridium-daily-sheet-item">
             <div class="iridium-daily-sheet-date-picker">
-              <DatePicker ref="picker" type="date" :value="dateVal" :editable="editable" @on-change="handleChange" :open="open" @on-open-change="handleOpenChange"></DatePicker>
+              <DatePicker type="date" :value="dateVal" :editable="editable" @on-change="handleChange"></DatePicker>
             </div>
-            <span @click="handleCalendar" class="iridium-daily-sheet-calendar-icon"><i class="fa fa-calendar"></i></span>
           </div>
           <div class="iridium-daily-sheet-btn-box">
             <button class="iridium-btn iridium-btn--primary iridium-btn--smaller iridium-daily-sheet-btn">查询</button>
@@ -118,7 +118,7 @@
 <script>
 import { DatePicker } from 'iview'
 export default {
-  name: 'dailySheet',
+  name: 'DailySheet',
   components: {
     'DatePicker': DatePicker
   },
@@ -217,25 +217,6 @@ export default {
       this.dateVal = date
       this.open = false
     },
-    handleOpenChange (e) {
-      if (e) {
-        this.open = true
-        this.isDate = true
-      } else {
-        if (this.isCalendar && !this.isDate) {
-          this.open = true
-          this.isCalendar = false
-        } else {
-          this.open = false
-        }
-      }
-    },
-    handleCalendar () {
-      this.open = true
-      this.isCalendar = true
-      this.isDate = false
-    }
-   
   },
   watch: {
     'labels' (newVal, oldVal) {
@@ -281,27 +262,10 @@ export default {
       padding: 0 var(--fontBase);
     }
     @descendent date {
-      margin-left: 80px;
       position:relative;
     }
     @descendent date-picker {
-      flex:1;
-      box-sizing:border-box;
       position:relative;
-      margin-right:40px;
-    }
-    @descendent calendar-icon {
-      width:40px;
-      background:#fff;
-      position:absolute;
-      right:14px;
-      top:0;
-      bottom:0;
-      text-align:center;
-      border:1px solid var(--borderColor);
-      line-height:32px;
-      box-sizing:border-box;
-      border-left:0;
     }
     @descendent btn {
       margin: 0 2px;

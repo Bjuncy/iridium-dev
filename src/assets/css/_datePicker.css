@@ -1,7 +1,7 @@
-
 .ivu-input {
+    width:100%;
+    box-sizing: border-box;
     display: inline-block;
-    width: 100%;
     height: var(--headingLevel1);
     line-height: 1.5;
     padding: var(--paddingBase);
@@ -13,9 +13,45 @@
     position: relative;
     cursor: text;
     transition: border .2s ease-in-out,background .2s ease-in-out,box-shadow .2s ease-in-out;
+
 }
 .ivu-input-icon-normal+.ivu-input {
-    padding-right: 32px;
+    padding-right: 40px;
+}
+.ivu-icon-ios-calendar-outline:before, .ivu-input-icon:before {
+    content: "\f073";
+    font-family: FontAwesome;
+    font-style: normal;
+}
+
+.ivu-input-hide-icon .ivu-input-icon-normal+.ivu-input {
+    padding-right:7px
+}
+.ivu-icon {
+    display: inline-block;
+    font-family: Ionicons;
+    speak: none;
+    font-style: normal;
+    font-weight: 400;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.ivu-input-icon {
+    width:40px;
+    height: 32px;
+    line-height: 32px;
+    font-size: var(--fontBase);
+    text-align: center;
+    color: var(--fontColorNormal);
+    position: absolute;
+    right: 0;
+    z-index: 3;
+    background: #fff;
+    border:1px solid var(--borderColor)
 }
 .ivu-date-picker {
     display: inline-block;
@@ -230,11 +266,9 @@ span.ivu-date-picker-cells-cell-disabled.ivu-date-picker-cells-cell-selected em 
     font-family: FontAwesome;
     font-style: normal;
 }
-
 .ivu-date-picker-next-btn {
     float: right
 }
-
 
 .ivu-date-picker-next-btn-arrow-double {
     margin-right: 10px
@@ -273,6 +307,9 @@ span.ivu-date-picker-cells-cell-disabled.ivu-date-picker-cells-cell-selected em 
     outline: 0;
     /* -webkit-box-shadow: 0 0 0 2px rgba(45,140,240,.2);
     box-shadow: 0 0 0 2px rgba(45,140,240,.2) */
+}
+.ivu-date-picker-focused i {
+    border-left-color: var(--primaryColor);
 }
 
 .ivu-picker-panel-icon-btn {

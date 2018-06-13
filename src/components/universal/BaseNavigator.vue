@@ -122,7 +122,7 @@ export default {
             },
             {
               name: '考勤月报表',
-              href: ''
+              href: 'MonthlySheet'
             },
             {
               name: '项目结算',
