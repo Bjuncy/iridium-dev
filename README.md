@@ -1,6 +1,6 @@
-# iridium-dev
+## iridium-dev
 
-> A Vue.js project
+> A Vue.js project 
 
 ## Build Setup
 

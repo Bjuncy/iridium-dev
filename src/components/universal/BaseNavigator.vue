@@ -118,11 +118,11 @@ export default {
           sub: [
             {
               name: '考勤日报表',
-              href: ''
+              href: 'DailySheet'
             },
             {
               name: '考勤月报表',
-              href: ''
+              href: 'MonthlySheet'
             },
             {
               name: '项目结算',

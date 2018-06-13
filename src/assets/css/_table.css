@@ -16,9 +16,9 @@
     font-weight: bold;
     padding: var(--tableTitlePadding);
 
-    &:first-child {
+    /* &:first-child {
       border-left: 0;
-    }
+    } */
   }
   
   @descendent item {

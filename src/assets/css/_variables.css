@@ -64,6 +64,7 @@
   /*border definition */
   --borderColor: #e5e6e7;
   --borderRadius: 3px;
+  --borderRadiusLarger:5px;
 
   /* table definition */
   --tableBorderColor: var(--borderColor);
@@ -102,4 +103,9 @@
   --navItemLeftPadding: 25px;
   --navSubItemHeight: 32px;
   --navSubItemLeftPadding: 50px;
+
+  /* a variables definition*/
+  --aDefaultColor: #676A6C;
+  --aHoverColor: #23527c;
+  --aHoverBgColor:#f4f4f4;
 }
