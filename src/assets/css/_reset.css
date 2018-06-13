@@ -28,18 +28,11 @@ a {
     background:  transparent;
     color: var(--aDefaultColor);
     display: inline-block;
-}
-a:hover{
-    color: var(--aHoverColor);
-    background: var(--aHoverBgColor);
-}
-.aDisable:hover{
-    color: var(--aDefaultColor);
-    background: var(--bgColor);
-    cursor:not-allowed;
-}
-.aCurrent{
-    background: var(--bgColor);
+    text-decoration: none;
+    &:hover{
+        color: var(--aHoverColor);
+        background: var(--aHoverBgColor);
+    }
 }
 img {
     width: 100%;
