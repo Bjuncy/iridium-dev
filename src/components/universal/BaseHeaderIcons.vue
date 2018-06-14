@@ -36,7 +36,7 @@ export default {
       return classString
     },
     isRouter (item) {
-      if (!this.router) return false
+      if (!this.router) return ''
       return { name: item.href }
     }
   }
