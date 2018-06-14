@@ -150,12 +150,12 @@ export default {
           icon: 'glyphicon glyphicon-stats',
           sub: [
             {
-              title: '考勤日报表',
-              routeName: ''
+              name: '考勤日报表',
+              href: 'DailySheet'
             },
             {
-              title: '考勤月报表',
-              routeName: ''
+              name: '考勤月报表',
+              href: 'MonthlySheet'
             },
             {
               title: '项目结算',

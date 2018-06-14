@@ -26,6 +26,13 @@ a {
     font-size: 100%;
     vertical-align: baseline;
     background:  transparent;
+    color: var(--aDefaultColor);
+    display: inline-block;
+    text-decoration: none;
+    &:hover{
+        color: var(--aHoverColor);
+        background: var(--aHoverBgColor);
+    }
 }
 img {
     width: 100%;
@@ -33,3 +40,7 @@ img {
 input, select {
     vertical-align: middle;
 }
+ul,li{
+    list-style: none;
+}
+

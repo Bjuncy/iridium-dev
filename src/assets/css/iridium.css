@@ -12,6 +12,7 @@
 @import '_animation.css';
 @import '_fontAwesome.css';
 @import '_fontGlyphicons.css';
+@import '_datePicker.css';
 
 body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -51,3 +52,21 @@ body {
 .font-larger {
   font-size: var(--fontLarger);
 }
+.flex-1{
+  flex: 1;
+}
+.aDisable:hover{
+  color: var(--aDefaultColor);
+  background: var(--bgColor);
+  cursor:not-allowed;
+}
+.aCurrent{
+  background: var(--bgColor);
+}
+.aDownload,
+.aDownload:hover{
+  color: var(--white);
+  background: transparent;
+}
+
+
