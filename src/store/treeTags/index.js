@@ -31,7 +31,6 @@ const mutations = {
     state.activeTag = data
   },
   [UPDATE_POSITIONTAG] (state, data) {
-    console.log(data.title)
     state.positionTag = data
   },
   [UPDATE_WRAPWIDTH] (state, data) {
