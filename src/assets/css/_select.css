@@ -21,12 +21,13 @@ select {
   width: 100%;
   border: 1px solid var(--borderColor);
   background: url("../images/icons/select-arrow.svg") no-repeat scroll right center / 12% 60% var(--white);
-  box-sizing: border-box;
-  cursor: pointer;
+  font-size: var(--fontBase);
   height: var(--formItemHeight);
   margin: 1px;
-  outline: 0;
   padding: var(--paddingBase);
+  box-sizing: border-box;
+  cursor: pointer;
+  outline: 0;
   transition: all var(--transitionDuration) var(--transitionTimingFuction);
 
   &:hover,

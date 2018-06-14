@@ -1,26 +1,54 @@
 @component dropdown {
-  border: 1px solid var(--borderColor);
+  position: relative;
   box-sizing: border-box;
   list-style: none;
   margin: 1px;
   padding: 0;
   width: 100%;
+  cursor: pointer;
 
-  &:focus,
-  &:hover {
-    border-color: var(--primaryColor);
+  @descendent title {
+    display: block;
+    box-sizing: border-box;
+    border: 1px solid var(--borderColor);
+    padding: var(--paddingBase);
+    &:hover {
+      background: var(--whiteColor);
+    }
   }
-
+  @descendent list {
+    position: absolute;
+    top: calc(100% + 2px);
+    right: 0;
+  }
   @descendent option {
     background: var(--white);
     color: inherit;
     cursor: pointer;
+    font-size: var(--fontSmallest);
     line-height: var(--formItemHeight);
-    padding: 0 var(--paddingHorizontal);
+    padding: var(--paddingLarger);
+    list-style: none;
+    white-space: nowrap;
 
     &:hover {
-      color: var(--white);
-      background: var(--primaryColor);
+      background: var(--whiteColor);
+    }
+    @modifier division {
+      border-top: 1px solid var(--borderColor);
+    }
+  }
+  
+  @modifier primary {
+    &:focus,
+    &:hover {
+      border-color: var(--primaryColor);
+    }
+    & .iridium-dropdown-option {
+      &:hover {
+        color: var(--white);
+        background: var(--primaryColor);
+      }
     }
   }
 }
