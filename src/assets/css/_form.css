@@ -3,6 +3,7 @@
   display: inline;
   background: var(--white);
   border: 1px solid var(--borderColor);
+  border-radius: var(--borderRadius);
   box-sizing: border-box;
   min-width: var(--formItemMinWidth);
   height: var(--formItemHeight);

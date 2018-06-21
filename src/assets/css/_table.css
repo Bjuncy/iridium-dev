@@ -3,6 +3,7 @@
   border-collapse: collapse;
   border: 1px solid var(--borderColor);
   border-bottom: 0;
+  margin: var(--blockMargin) 0;
 
   @descendent row {
     border-bottom: 1px solid var(--tableItemBorderBottomColor);
@@ -47,6 +48,12 @@
 
   @modifier center {
     text-align: center;
+  }
+  @modifier left {
+    text-align: left;
+  }
+  @modifier right {
+    text-align: rights;
   }
 
 }

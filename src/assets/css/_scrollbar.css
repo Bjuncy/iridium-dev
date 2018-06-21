@@ -10,6 +10,6 @@
 }
 /* 定义滚动条滑块 */
 ::-webkit-scrollbar-thumb {
-  background: var(--scrollbarTrackThumbColor);
+  background: var(--scrollbarThumbBgColor);
   border-radius: var(--borderRadius);
 }

@@ -58,13 +58,17 @@
   --paddingBase: calc(var(--fontSmallest) * 0.5) var(--fontSmallest);
   --paddingSmaller: calc(var(--fontLarger) * 0.3125) calc(var(--fontLarger) * 0.625);
   --paddingSmallest: 1px 5px 2px;
-  --paddingLarger: calc(var(--fontLarger) * 0.3125) var(--fontLarger);
+  --paddingLarger: calc(var(--fontLarger) * 0.625) var(--fontLarger);
   --paddingLargest: var(--fontLarger) calc(var(--fontLarger) * 1.5);
 
   /*border definition */
   --borderColor: #e5e6e7;
   --borderRadius: 3px;
   --borderRadiusLarger:5px;
+
+  --blockPadding: 20px;
+  --blockMargin: 20px;
+  --blockBorderColor: #E7EAEC;
 
   /* table definition */
   --tableBorderColor: var(--borderColor);
@@ -78,6 +82,9 @@
   --tableItemPadding: var(--tableTitlePadding);
   --tableItemStripedColor: #f8f8f8;
 
+  /*dropdown width*/
+  --dropdownWidth: 200px;
+  --dropdownHeight: 300px; 
   /* input, select height*/
   --formItemMinWidth: 100px;
   --formItemHeight: calc(var(--fontLarger) * 2);
