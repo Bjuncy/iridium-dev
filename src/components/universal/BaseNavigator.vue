@@ -130,7 +130,7 @@ export default {
             },
             {
               name: '员工出勤率与覆盖率统计',
-              href: ''
+              href: 'AttendanceAndCoverage'
             },
             {
               name: '项目考勤月报表',

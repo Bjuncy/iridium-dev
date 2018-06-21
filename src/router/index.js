@@ -5,6 +5,7 @@ import IridiumHome from '@/components/IridiumHome'
 import DemoList from '@/components/demo/DemoList'
 import DailySheet from '@/components/views/DailySheet'
 import MonthlySheet from '@/components/views/MonthlySheet'
+import AttendanceAndCoverage from '@/components/views/attendanceAndCoverage'
 
 Vue.use(Router)
 
@@ -15,14 +16,19 @@ const PageRouters = [
     component: IridiumHome
   },
   {
-    path: '/DailySheet',
+    path: '/daily-sheet',
     name: 'DailySheet',
     component: DailySheet
   },
   {
-    path: '/MonthlySheet',
+    path: '/monthly-sheet',
     name: 'MonthlySheet',
     component: MonthlySheet
+  },
+  {
+    path: '/attendance-and-Coverage',
+    name: 'AttendanceAndCoverage',
+    component: AttendanceAndCoverage
   }
 ]
 

@@ -18,10 +18,8 @@
         </div>
         <div class="iridium-daily-sheet-label">
           <div class="iridium-daily-sheet-label-name">工作时段：</div>
-          <div class="iridium-daily-sheet-date iridium-daily-sheet-item">
-            <div class="iridium-daily-sheet-date-picker">
-              <DatePicker type="date" :value="dateVal" :editable="editable" @on-change="handleChange"></DatePicker>
-            </div>
+          <div class="iridium-daily-sheet-item">
+            <DatePicker type="date" :value="dateVal" :editable="editable" @on-change="handleChange"></DatePicker>
           </div>
           <div class="iridium-daily-sheet-btn-box">
             <button class="iridium-btn iridium-btn--primary iridium-btn--smaller iridium-daily-sheet-btn">查询</button>
@@ -112,7 +110,6 @@
         </div>
     </section>
   </div>
-  
 </template>
 
 <script>
@@ -193,7 +190,7 @@ export default {
           'dueHour': '2.5',
           'addHour': '2',
           'getHour': '4.5'
-        } 
+        }
       ],
       pages: 3,
       totalNum: 34,
@@ -216,7 +213,7 @@ export default {
     handleChange (date) {
       this.dateVal = date
       this.open = false
-    },
+    }
   },
   watch: {
     'labels' (newVal, oldVal) {
@@ -225,8 +222,7 @@ export default {
     'project' (newVal, oldVal) {
       console.log(newVal, oldVal)
     }
-  },
-  
+  }
 }
 </script>
 <style scoped>
@@ -251,8 +247,8 @@ export default {
       padding-bottom: var(--fontBase);
     }
     @descendent label-name {
-      width: 80px;
       line-height: 32px;
+      white-space:nowrap;
     }
     @descendent item {
       width: 25%;
@@ -260,12 +256,6 @@ export default {
     }
     @descendent btn-box {
       padding: 0 var(--fontBase);
-    }
-    @descendent date {
-      position:relative;
-    }
-    @descendent date-picker {
-      position:relative;
     }
     @descendent btn {
       margin: 0 2px;
@@ -296,7 +286,7 @@ export default {
     }
     @descendent rradius{
       border-radius:0 var(--borderRadiusLarger) var(--borderRadiusLarger) 0;
-    } 
+    }
   }
   .iridium-select{
     color: var(--fontColorNormal);

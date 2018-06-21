@@ -4,16 +4,12 @@
     <section class="iridium-monthly-sheet-main">
         <div class="iridium-monthly-sheet-label">
           <div class="iridium-monthly-sheet-label-name">工作时段：</div>
-          <div class="iridium-monthly-sheet-date iridium-monthly-sheet-item">
-            <div class="iridium-monthly-sheet-date-picker">
-              <DatePicker type="date" :value="startTime" :editable="editable"  @on-change="handleChange"></DatePicker>
-            </div>
+          <div class="iridium-monthly-sheet-item">
+            <DatePicker type="date" :value="startTime" :editable="editable"  @on-change="handleChange"></DatePicker>
           </div>
           <span class="iridium-monthly-sheet-item-em">到</span>
-          <div class="iridium-monthly-sheet-date iridium-monthly-sheet-item">
-            <div class="iridium-monthly-sheet-date-picker">
-              <DatePicker type="date" :value="endTime" :editable="editable" @on-change="handleChange2"></DatePicker>
-            </div>
+          <div class="iridium-monthly-sheet-item">
+            <DatePicker type="date" :value="endTime" :editable="editable" @on-change="handleChange2"></DatePicker>
           </div>
           <div class="iridium-monthly-sheet-item">
             <select class="iridium-select" v-model="project">
@@ -25,7 +21,6 @@
             <button class="iridium-btn iridium-btn--danger iridium-btn--smaller iridium-monthly-sheet-btn"><a class="aDownload" href="#" download="../../assets/images/logo-nav-hide.png">导出</a></button>
           </div>
         </div>
-
         <div class="iridium-monthly-sheet-tabel">
           <table class="iridium-table iridium-table--center">
             <thead>
@@ -104,7 +99,6 @@
         </div>
     </section>
   </div>
-  
 </template>
 
 <script>
@@ -163,7 +157,7 @@ export default {
           'hourPrice': '9.26',
           'realwage': '1331.96',
           'remark': '备注'
-        } 
+        }
       ],
       pages: 3,
       totalNum: 30,
@@ -188,14 +182,13 @@ export default {
     },
     handleChange2 (date) {
       this.endTime = date
-    },
+    }
   },
   watch: {
     'project' (newVal, oldVal) {
       console.log(newVal, oldVal)
     }
-  },
-  
+  }
 }
 </script>
 <style scoped>
@@ -220,8 +213,8 @@ export default {
       padding-bottom: var(--fontBase);
     }
     @descendent label-name {
-      width: 80px;
       line-height: 32px;
+      white-space:nowrap;
     }
     @descendent item {
       width: 25%;
@@ -233,13 +226,6 @@ export default {
     }
     @descendent btn-box {
       padding: 0 var(--fontBase);
-    }
-    @descendent date {
-      position:relative;
-    }
-    @descendent date-picker {
-      box-sizing:border-box;
-      position:relative;
     }
     @descendent btn {
       margin: 2px;
@@ -270,7 +256,7 @@ export default {
     }
     @descendent rradius{
       border-radius:0 var(--borderRadiusLarger) var(--borderRadiusLarger) 0;
-    } 
+    }
   }
   .iridium-select{
     color: var(--fontColorNormal);
