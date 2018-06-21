@@ -1,5 +1,5 @@
 <template>
-  <div class="iridium">
+  <div class="iridium-home">
   </div>
 </template>
 

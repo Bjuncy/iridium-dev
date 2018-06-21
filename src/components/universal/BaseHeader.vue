@@ -1,7 +1,7 @@
 <template>
   <header class="iridium-header">
     <nav class="iridium-header-nav flex">
-      <button class="iridium-btn iridium-btn--primary fa fa-bars" @click="toggleNavbar"></button>
+      <button class="iridium-btn iridium-btn--primary iridium-btn--radius fa fa-bars" @click="toggleNavbar"></button>
       <header-icons :labels="iconLabels"/>
       <user-info/>
     </nav>

@@ -1,35 +1,36 @@
 <template>
-  <div class="iridium-daily-sheet">
-    <h5 class="iridium-daily-sheet-title">结算日报表</h5>
-    <section class="iridium-daily-sheet-main">
-        <div class="iridium-daily-sheet-label">
-          <div class="iridium-daily-sheet-label-name">移动标签：</div>
-          <div class="iridium-daily-sheet-item">
-            <select class="iridium-select" v-model="labels">
-              <option class="iridium-select-option" value="请选择">请选择</option>
-              <option class="iridium-select-option" :key="val.labelId" :value="val.name" v-for="val in labelOptions">{{ val.name }}</option>
-            </select>
-          </div>
-          <div class="iridium-daily-sheet-item">
-            <select class="iridium-select" v-model="project">
-              <option class="iridium-select-option" :key="val.projectId" :value="val.name" v-for="val in projectOptions">{{ val.name }}</option>
-            </select>
-          </div>
-        </div>
-        <div class="iridium-daily-sheet-label">
-          <div class="iridium-daily-sheet-label-name">工作时段：</div>
-          <div class="iridium-daily-sheet-item">
-            <DatePicker type="date" :value="dateVal" :editable="editable" @on-change="handleChange"></DatePicker>
-          </div>
-          <div class="iridium-daily-sheet-btn-box">
-            <button class="iridium-btn iridium-btn--primary iridium-btn--smaller iridium-daily-sheet-btn">查询</button>
-            <button class="iridium-btn iridium-btn--danger iridium-btn--smaller iridium-daily-sheet-btn"><a class="aDownload" href="#" download="../../assets/images/logo-nav-hide.png">导出</a></button>
-          </div>
-        </div>
-        <div class="iridium-daily-sheet-tabel">
-          <table class="iridium-table iridium-table--center">
-            <thead>
-              <tr class="iridium-table-row">
+  <section class="iridium-page">
+    <h5 class="iridium-page-title">结算日报表</h5>
+    <div class="iridium-page-content">
+      <Row type="flex" justify="start" :gutter="15" class="row_margin">
+        <Col>
+          移动标签：
+          <Select placeholder="请选择" v-model="query.labelId">
+            <Option v-for="item in labels" :value="item.labelId" :key="item.labelId">{{ item.name }}</Option>
+          </Select>
+        </Col>
+        <Col>
+          <Select placeholder="请选择" v-model="query.projectId">
+            <Option v-for="item in projects" :value="item.projectId" :key="item.projectId">{{ item.name }}</Option>
+          </Select>
+        </Col>
+      </Row>
+      <Row type="flex" justify="start" :gutter="15">
+        <Col>
+          工作时段：
+          <DatePicker type="date"
+            :placeholder="date"
+            @on-change="pickerDate"
+            >
+          </DatePicker>
+        </Col>
+        <Col>
+          <button class="iridium-btn iridium-btn--primary iridium-btn--smaller iridium-btn--radius" @click="search">查询</button>
+        </Col>
+      </Row>
+      <table class="iridium-table iridium-table--striped iridium-table--hover">
+        <thead>
+          <tr class="iridium-table-row">
                 <th rowspan="3" class="iridium-table-title">标签号</th>
                 <th rowspan="3" class="iridium-table-title">日期</th>
                 <th colspan="3" rowspan="1" class="iridium-table-title">出勤情况</th>
@@ -62,233 +63,144 @@
                 <th rowspan="2" class="iridium-table-title">考核工时</th>
                 <th rowspan="2" class="iridium-table-title">备注</th>
               </tr>
-            </thead>
-            <tbody>
-              <tr class="iridium-table-row" :key="index" v-for="(item,index) in list">
-                <td class="iridium-table-item" :key="key" v-for="(val,key) in item">{{val}}</td>
-              </tr>
-              <tr v-if="!list.length">
-                <td  class="iridium-daily-sheet-empty" colspan="22">没有数据</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="iridium-daily-sheet-pages flex">
-          <div class="flex-1 left">
-            <p v-if="!totalNum">显示0项</p>
-            <p else>显示{{(currentPage-1)*10+1}}到{{currentPage*10}}条，共{{totalNum}}条</p>
-          </div>
-          <div class="flex-1">
-            <ul class="flex right">
-              <li @click="handlePages(1)">
-                <a href="javascript:void(0);"
-                  class="iridium-daily-sheet-pages-item iridium-daily-sheet-leftborder iridium-daily-sheet-lradius"
-                  :class="{ aDisable: !pages, aCurrent: currentPage == 1}">首页</a>
-              </li>
-              <li @click="handlePages(currentPage-1)">
-                <a href="javascript:void(0);"
-                  class="iridium-daily-sheet-pages-item"
-                  :class="{ aDisable: pages && pages === 1 || pages && currentPage === 1 || !pages }">上一页</a>
-              </li>
-              <li @click="handlePages(n)" :key="index" v-for="( n, index ) in pages">
-                <a href="javascript:void(0);"
-                  class="iridium-daily-sheet-pages-item"
-                  :class="{ aCurrent:n == currentPage }">{{ n }}</a>
-              </li>
-              <li @click="handlePages(currentPage+1)">
-                <a href="javascript:void(0);"
-                  class="iridium-daily-sheet-pages-item"
-                  :class="{ aDisable: pages && pages === 1 || pages && currentPage === pages || !pages }">下一页</a>
-              </li>
-              <li @click="handlePages(pages)">
-                <a href="javascript:void(0);"
-                  class="iridium-daily-sheet-pages-item iridium-daily-sheet-rradius"
-                  :class="{ aDisable: pages && pages === 1 || !pages, aCurrent: currentPage == pages}">末页</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-    </section>
-  </div>
+        </thead>
+        <tbody>
+          <tr
+             v-for="item in list"
+             :key="item.id"
+             class="iridium-table-row">
+            <td class="iridium-table-item">{{ item.labelId }}</td>
+            <td class="iridium-table-item">{{ item.dateTime }}</td>
+            <td class="iridium-table-item">{{ item.attendanceStartTime }}</td>
+            <td class="iridium-table-item">{{ item.attendanceEndTime }}</td>
+            <td class="iridium-table-item">{{ item.attendanceHours }}</td>
+            <td class="iridium-table-item">{{ item.attendanceRateWorkingHours }}</td>
+            <td class="iridium-table-item">{{ item.points }}</td>
+            <td class="iridium-table-item">{{ item.coveragePoint1 }}</td>
+            <td class="iridium-table-item">{{ item.coveragePoint2 }}</td>
+            <td class="iridium-table-item">{{ item.coverageRate }}</td>
+            <td class="iridium-table-item">{{ item.coverageRemainHours }}</td>
+            <td class="iridium-table-item">{{ item.coverageRemark }}</td>
+            <td class="iridium-table-item">{{ item.cleanResultCheckTime }}</td>
+            <td class="iridium-table-item">{{ item.cleanResultCheckArea }}</td>
+            <td class="iridium-table-item">{{ item.cleanResultCheckLevel }}</td>
+            <td class="iridium-table-item">{{ item.cleanResultCheckHours }}</td>
+            <td class="iridium-table-item">{{ item.alarmConditionTime }}</td>
+            <td class="iridium-table-item">{{ item.alarmConditionReason }}</td>
+            <td class="iridium-table-item">{{ item.alarmConditionCheckHour }}</td>
+            <td class="iridium-table-item">{{ item.alarmConditionRemark }}</td>
+            <td class="iridium-table-item">{{ item.dueHours }}</td>
+            <td class="iridium-table-item">{{ item.addHours }}</td>
+            <td class="iridium-table-item">{{ item.finallyGetHours }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="pagination" class="pagination"></div>
+    </div>
+  </section>
 </template>
 
 <script>
-import { DatePicker } from 'iview'
+import { DatePicker, Select, Option } from 'iview'
+import day from 'dayjs'
+import 'paginationjs'
+const initPagination = (context, dataSource) => {
+  $('#pagination').pagination({
+    dataSource: dataSource,
+    locator: 'data.records',
+    totalNumberLocator: (res) => {
+      return res.data.totalCount
+    },
+    pageRange: 6,
+    firstText: '首页',
+    lastText: '末页',
+    prevText: '上一页',
+    nextText: '下一页',
+    alias: {
+      pageNumber: 'pageNum',
+      pageSize: 'numPerPage'
+    },
+    callback: (data, pagination) => {
+      context.list = data
+    }
+  })
+}
 export default {
   name: 'DailySheet',
   components: {
-    'DatePicker': DatePicker
+    DatePicker,
+    Select,
+    Option
   },
   data () {
     return {
-      labels: '请选择',
-      project: '沈阳金域蓝湾（北区）',
-      dateVal: '',
-      editable: false,
-      open: false,
-      isCalendar: true,
-      isDate: false,
-      labelOptions: [
-        {
-          'labelId': '01',
-          'code': '01,01',
-          'name': 'A区地库岗',
-          'type': '移动标签'
-        },
-        {
-          'labelId': '02',
-          'code': '01,02',
-          'name': 'B区地库岗',
-          'type': '移动标签'
-        }
-      ],
-      projectOptions: [
-        {
-          'projectId': '00',
-          'code': '21010011',
-          'name': '沈阳金域蓝湾（北区）',
-          'title': '沈阳金域蓝湾（北区）',
-          'address': '沈阳市浑南新区朗日街1号',
-          'price': '10.66',
-          'leader': '柳丽霞',
-          'phone': '15142077879',
-          'supplier': '济宁亚旗物业服务有限公司'
-        },
-        {
-          'projectId': '01',
-          'code': '21010005',
-          'name': '金色家园',
-          'title': '金色家园',
-          'address': '沈阳市大东区八王寺街28号万科金色家园',
-          'price': '9.26',
-          'leader': '高会涛',
-          'phone': '18202416225',
-          'supplier': '济宁亚琪物业服务有限公司'
-        }
-      ],
-      list: [
-        {
-          'labelId': '01',
-          'dateTime': '2018-04-14',
-          'startTime': '16:22:20',
-          'endTime': '16:40:20',
-          'attendanceHour': '4.5',
-          'point': '22',
-          'coverPoint1': 2,
-          'coverPoint2': 0,
-          'coverRate': '90.92%',
-          'remainHour': '2',
-          'coverRemark': '备注',
-          'checkTime': '16:50:20',
-          'checkArea': '车位、车库保洁岗规则',
-          'checkLevel': '0',
-          'checkHour': '0',
-          'warnTime': '',
-          'warnReason': '',
-          'warnHour': '',
-          'warnRemark': '',
-          'dueHour': '2.5',
-          'addHour': '2',
-          'getHour': '4.5'
-        }
-      ],
-      pages: 3,
-      totalNum: 34,
-      currentPage: 1
+      date: day().format('YYYY-MM-DD'),
+      labels: [],
+      projects: [],
+      list: [],
+      query: {
+        projectCode: '',
+        labelId: '',
+        workTime: day().format('YYYY-MM-DD')
+      },
+      defaultUrl: this.$api.getDailySheet
     }
+  },
+  created () {
+    // 加载项目选项卡数据
+    this.$axios.get(this.$api.getProjects)
+      .then(res => {
+        if (res.data.code === 0) {
+          this.projects = res.data.data
+        } else {
+          this.$message.error({content: res.data.msg})
+        }
+      })
+    /* this.$axios.get(this.$api.getMovingLabel)
+      .then(res => {
+        if (res.data.code === 0) {
+          this.labels = res.data.data
+        } else {
+          this.$message.error({content: res.data.msg})
+        }
+      }) */
+  },
+  mounted () {
+    initPagination(this, this.defaultUrl)
   },
   methods: {
-    handlePages (n) {
-      if (this.pages) {
-        if (n >= this.pages) {
-          this.currentPage = this.pages
-        } else if (n <= 1) {
-          this.currentPage = 1
+    splicingSearchQuery (baseUrl, query) {
+      baseUrl += '?'
+      Object.entries(query).forEach((item, index, arr) => {
+        if (index === arr.length - 1) {
+          baseUrl += item.join('=')
         } else {
-          this.currentPage = n
+          baseUrl += item.join('=') + '&'
         }
-        console.log(this.currentPage)
+      })
+      return baseUrl
+    },
+    search () {
+      // 获取开始时间
+      let url = ''
+      // 处理查询字符串
+      if (this.query.projectCode || this.query.workTime || this.query.labelId) {
+        url = this.splicingSearchQuery(this.defaultUrl, this.query)
       }
+      initPagination(this, url)
     },
-    handleChange (date) {
-      this.dateVal = date
-      this.open = false
-    }
-  },
-  watch: {
-    'labels' (newVal, oldVal) {
-      console.log(newVal, oldVal)
-    },
-    'project' (newVal, oldVal) {
-      console.log(newVal, oldVal)
+    pickerDate (value) {
+      this.query.workTime = value
     }
   }
 }
 </script>
-<style scoped>
-  @import '../../assets/css/_variables.css';
-  @component daily-sheet{
-    margin: var(--paddingLargest);
-    border-top: 4px solid var(--whiteColorLight);
-    background: var(--white);
-    color: var(--fontColorNormal);
-    font-size: var(--fontBase);
 
-    @descendent title {
-      padding: var(--paddingHorizontal);
-      border-bottom: 1px solid var(--whiteColorLight);
-    }
-    @descendent main {
-      padding: var(--paddingHorizontal);
-    }
-    @descendent label {
-      width: 100%;
-      display: flex;
-      padding-bottom: var(--fontBase);
-    }
-    @descendent label-name {
-      line-height: 32px;
-      white-space:nowrap;
-    }
-    @descendent item {
-      width: 25%;
-      padding: 0 var(--fontBase);
-    }
-    @descendent btn-box {
-      padding: 0 var(--fontBase);
-    }
-    @descendent btn {
-      margin: 0 2px;
-    }
-    @descendent empty {
-      border-bottom: 1px solid var(--tableItemBorderBottomColor);
-      padding: var(--tableItemPadding);
-      vertical-align: middle;
-      text-align: left;
-      background: var(--tableTitleBgColor);
-    }
-    @descendent pages{
-      padding: var(--fontBase) 0;
-      text-align:left;
-    }
-    @descendent pages-item{
-      padding:2px 8px;
-      border:1px solid var(--borderColor);
-      border-left:0;
-      height:20px;
-      line-height:20px;
-    }
-    @descendent leftborder{
-      border-left:1px solid var(--borderColor);
-    }
-    @descendent lradius{
-      border-radius: var(--borderRadiusLarger) 0 0 var(--borderRadiusLarger);
-    }
-    @descendent rradius{
-      border-radius:0 var(--borderRadiusLarger) var(--borderRadiusLarger) 0;
-    }
-  }
-  .iridium-select{
-    color: var(--fontColorNormal);
-  }
+<style scoped>
+.ivu-select{
+  width:auto;
+}
+.row_margin{
+  margin-bottom:14px;
+}
 </style>

@@ -1,10 +1,12 @@
 <template>
   <div id="app" class="iridium">
     <base-navigator/>
-    <div class="iridium-main">
+    <main class="iridium-main">
       <base-header/>
-      <router-view/>
-    </div>
+      <article>
+        <router-view/>
+      </article>
+    </main>
   </div>
 </template>
 

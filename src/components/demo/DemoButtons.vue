@@ -7,7 +7,6 @@
     <button class="iridium-btn iridium-btn--info">按钮</button>
     <button class="iridium-btn iridium-btn--warning">按钮</button>
     <button class="iridium-btn iridium-btn--danger">按钮</button>
-    <button class="iridium-btn iridium-btn--white">按钮</button>
     <button class="iridium-btn iridium-btn--link">按钮</button>
     <pre>&lt;button class="iridium-btn iridium-btn--default"&gt;按钮&lt;/button&gt;
 &lt;button class="iridium-btn iridium-btn--primary"&gt;按钮&lt;/button&gt;
@@ -15,7 +14,6 @@
 &lt;button class="iridium-btn iridium-btn--info"&gt;按钮&lt;/button&gt;
 &lt;button class="iridium-btn iridium-btn--warning"&gt;按钮&lt;/button&gt;
 &lt;button class="iridium-btn iridium-btn--danger"&gt;按钮&lt;/button&gt;
-&lt;button class="iridium-btn iridium-btn--white"&gt;按钮&lt;/button&gt;
 &lt;button class="iridium-btn iridium-btn--link"&gt;按钮&lt;/button&gt;</pre>
     <div class="block">
       <h3 class="sub-title">常规按钮禁用</h3>
@@ -25,7 +23,6 @@
       <button class="iridium-btn iridium-btn--info" disabled="disabled">按钮</button>
       <button class="iridium-btn iridium-btn--warning disabled">按钮</button>
       <button class="iridium-btn iridium-btn--danger disabled">按钮</button>
-      <button class="iridium-btn iridium-btn--white disabled">按钮</button>
       <button class="iridium-btn iridium-btn--link disabled">按钮</button>
     <pre>&lt;button class="iridium-btn iridium-btn--default" disabled="disabled"&gt;按钮&lt;/button&gt;
 &lt;button class="iridium-btn iridium-btn--primary" disabled="disabled"&gt;按钮&lt;/button&gt;
@@ -33,7 +30,6 @@
 &lt;button class="iridium-btn iridium-btn--info" disabled="disabled"&gt;按钮&lt;/button&gt;
 &lt;button class="iridium-btn iridium-btn--warning disabled"&gt;按钮&lt;/button&gt;
 &lt;button class="iridium-btn iridium-btn--danger disabled"&gt;按钮&lt;/button&gt;
-&lt;button class="iridium-btn iridium-btn--white disabled"&gt;按钮&lt;/button&gt;
 &lt;button class="iridium-btn iridium-btn--link disabled"&gt;按钮&lt;/button&gt;</pre>
     </div>
     <div class="block">

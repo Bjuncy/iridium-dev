@@ -5,6 +5,8 @@ import actions from './actions'
 import getters from './getters'
 import state from './state'
 
+import treeTags from './treeTags'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -12,8 +14,8 @@ export default new Vuex.Store({
   state,
   actions,
   getters,
-  mutations
-  /* modules: {
-    leave
-  } */
+  mutations,
+  modules: {
+    treeTags
+  }
 })

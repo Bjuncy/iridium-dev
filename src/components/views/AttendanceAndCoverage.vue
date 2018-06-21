@@ -96,19 +96,6 @@ export default {
       movingLabel: '',
       editable: false,
       projectOptions: [
-        {
-          'title': '住运',
-          'children': [
-            {
-              'title': 'C大区',
-              'children': [
-                 {
-                   
-                 }
-              ]
-            }
-          ]
-        }
       ],
       list: [
         {
