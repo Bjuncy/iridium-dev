@@ -150,12 +150,12 @@ export default {
           icon: 'glyphicon glyphicon-stats',
           sub: [
             {
-              name: '考勤日报表',
-              href: 'DailySheet'
+              title: '考勤日报表',
+              routeName: 'DailySheet'
             },
             {
-              name: '考勤月报表',
-              href: 'MonthlySheet'
+              title: '考勤月报表',
+              routeName: 'MonthlySheet'
             },
             {
               title: '项目结算',
@@ -280,9 +280,6 @@ export default {
         this.$store.dispatch('UPDATE_POSITIONTAG', prevTag)
         this.scrollTo(-formerTagsWidth)
       }
-      this.$router.push({
-        name: tag.routerName
-      })
     },
     updateTreeTags (tag) {
       // 如果是添加标签，执行更新标签函数，否则执行切换当前标签函数
@@ -304,6 +301,9 @@ export default {
       } else {
         this.updateActiveTag(tag)
       }
+      this.$router.push({
+        name: tag.routeName
+      })
     },
     toggle (e, index) {
       if (this.current === index) {

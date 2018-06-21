@@ -119,7 +119,7 @@ export default {
         this.scrollTo(-formerTagsWidth)
       }
       this.$router.push({
-        name: tag.routerName
+        name: tag.routeName
       })
     },
     removeTreeTag (e, tag) {
@@ -157,6 +157,9 @@ export default {
           this.scrollTo(-moveOffset)
         }
       }
+      this.$router.push({
+        name: newActiveTag.routeName
+      })
     },
     prev () {
       let listWidth = this.getListWidth()
