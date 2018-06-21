@@ -6,14 +6,25 @@ export default {
       userInfo: baseUrl + 'employees/me',
       getDictionaries: baseUrl + 'dictionaries',
       getProjects: baseUrl + 'projects',
+      // 保洁任务
       getCleaningTasks: baseUrl + 'project/cleaningTasks',
       getCleaningTaskDetail (params) {
         return baseUrl + `project/cleaningTask/${params.id}`
       },
       modifyCleaningTasks: baseUrl + 'project/cleaningTasks/notSettle',
+      // 已结算项目
       getSettledProjects: baseUrl + 'projects/settledProjects',
       getSettledProjectDetail (params) {
         return baseUrl + `projects/${params.projectId}/settleDetails`
+      },
+      // 项目结算
+      getProjectSettlementData: baseUrl + 'projects/settlement',
+      getSettledClerk (params) {
+        return baseUrl + `projects/${params.projectId}/leaders`
+      },
+      scanProjectSettlementLeader: baseUrl + 'projectbill/projectbillScan',
+      settleProject (params) {
+        return baseUrl + `projects/${params.projectId}/settle`
       }
     }
   }
