@@ -3,29 +3,25 @@ import Router from 'vue-router'
 import IridiumHome from '@/components/IridiumHome'
 // demostration
 import DemoList from '@/components/demo/DemoList'
-import DailySheet from '@/components/views/DailySheet'
-import MonthlySheet from '@/components/views/MonthlySheet'
+
+// import baseInfo from './baseInfo'
+// import alarmInfo from './alarmInfo'
+import statisticalReport from './statisticalReport'
+import qualityControl from './qualityControl'
+// import systemConfig from './systemConfig'
 
 Vue.use(Router)
 
-const PageRouters = [
-  {
-    path: '/',
-    name: 'IridiumHome',
-    component: IridiumHome
-  },
-  {
-    path: '/DailySheet',
-    name: 'DailySheet',
-    component: DailySheet
-  },
-  {
-    path: '/MonthlySheet',
-    name: 'MonthlySheet',
-    component: MonthlySheet
-  }
-]
+let routers = []
 
+const PageRouters = [
+  { path: '/', name: 'IridiumHome', component: IridiumHome },
+  // ...baseInfo,
+  // ...alarmInfo,
+  ...statisticalReport,
+  ...qualityControl
+  // ...systemConfig
+]
 const DemoRouters = [
   {
     path: '/demo',
@@ -34,6 +30,10 @@ const DemoRouters = [
   }
 ]
 
+routers = process.env.NODE_ENV !== 'production'
+  ? PageRouters.concat(DemoRouters)
+  : PageRouters
+
 export default new Router({
-  routes: PageRouters.concat(DemoRouters)
+  routes: routers
 })
