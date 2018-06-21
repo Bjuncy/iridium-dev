@@ -5,15 +5,17 @@ import App from './App'
 import router from './router'
 import store from './store'
 import Api from './api'
-import { Modal } from 'iview'
-import 'jquery'
-// import 'iview/dist/styles/iview.css'
+// iview全局组件设置
+import Iview from './iview'
+import Axios from 'axios'
+import Mock from 'mockjs'
 
 Vue.config.productionTip = false
 
 Vue.use(Api)
-// 全局注册iview组件
-Vue.component('Modal', Modal)
+Vue.use(Iview)
+Vue.prototype.$axios = Axios
+Vue.prototype.$mock = Mock
 
 /* eslint-disable no-new */
 new Vue({
