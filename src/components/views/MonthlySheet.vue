@@ -104,7 +104,6 @@
         </div>
     </section>
   </div>
-  
 </template>
 
 <script>
@@ -163,7 +162,7 @@ export default {
           'hourPrice': '9.26',
           'realwage': '1331.96',
           'remark': '备注'
-        } 
+        }
       ],
       pages: 3,
       totalNum: 30,
@@ -188,14 +187,13 @@ export default {
     },
     handleChange2 (date) {
       this.endTime = date
-    },
+    }
   },
   watch: {
     'project' (newVal, oldVal) {
       console.log(newVal, oldVal)
     }
-  },
-  
+  }
 }
 </script>
 <style scoped>
@@ -270,7 +268,7 @@ export default {
     }
     @descendent rradius{
       border-radius:0 var(--borderRadiusLarger) var(--borderRadiusLarger) 0;
-    } 
+    }
   }
   .iridium-select{
     color: var(--fontColorNormal);

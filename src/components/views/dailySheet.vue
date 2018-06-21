@@ -112,7 +112,6 @@
         </div>
     </section>
   </div>
-  
 </template>
 
 <script>
@@ -193,7 +192,7 @@ export default {
           'dueHour': '2.5',
           'addHour': '2',
           'getHour': '4.5'
-        } 
+        }
       ],
       pages: 3,
       totalNum: 34,
@@ -216,7 +215,7 @@ export default {
     handleChange (date) {
       this.dateVal = date
       this.open = false
-    },
+    }
   },
   watch: {
     'labels' (newVal, oldVal) {
@@ -225,8 +224,7 @@ export default {
     'project' (newVal, oldVal) {
       console.log(newVal, oldVal)
     }
-  },
-  
+  }
 }
 </script>
 <style scoped>
@@ -296,7 +294,7 @@ export default {
     }
     @descendent rradius{
       border-radius:0 var(--borderRadiusLarger) var(--borderRadiusLarger) 0;
-    } 
+    }
   }
   .iridium-select{
     color: var(--fontColorNormal);
