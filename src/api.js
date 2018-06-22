@@ -18,7 +18,8 @@ export default {
       getDailySheet: baseUrl + 'report/reportList',
       getMovingLabel: baseUrl + 'movingLabel',
       getMonthlySheet: baseUrl + 'report/reportAllList',
-      getAttendanceAndCoverage: baseUrl + 'report/attendanceAndCoverage'
+      getAttendanceAndCoverage: baseUrl + 'report/attendanceAndCoverage',
+      getProjectAttendanceMonthlyReport: baseUrl + 'report/projectAttendanceMonthlyReport'
     }
   }
 }
