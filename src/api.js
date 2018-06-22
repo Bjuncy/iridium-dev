@@ -25,6 +25,11 @@ export default {
       scanProjectSettlementLeader: baseUrl + 'projectbill/projectbillScan',
       settleProject (params) {
         return baseUrl + `projects/${params.projectId}/settle`
+      },
+      // 项目结算配置
+      getProjectSettlementConfig: baseUrl + 'projects/settleConfigs',
+      modifyProjectSettlementConfig (params) {
+        return baseUrl + `projects/${params.projectCode}/settleConfig`
       }
     }
   }

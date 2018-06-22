@@ -29,3 +29,8 @@
 .ivu-select-item-selected, .ivu-select-item-selected:hover {
   background: var(--primaryColor);
 }
+.ivu-form-item-content {
+  & .ivu-select-selection {
+    min-width: 98% !important;
+  }
+}
