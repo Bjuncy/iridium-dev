@@ -5,30 +5,54 @@
       <Row type="flex" justify="start" :gutter="15">
         <Col>
           工作时段：
-          <DatePicker type="date"
-            :placeholder="date"
+          <DatePicker type="daterange"
+            :placeholder="dateRange"
             @on-change="pickerDate"
             >
           </DatePicker>
         </Col>
+        <Col>
           <Select placeholder="请选择" v-model="query.projectId">
             <Option v-for="item in projects" :value="item.projectId" :key="item.projectId">{{ item.name }}</Option>
           </Select>
         </Col>
         <Col>
           <button class="iridium-btn iridium-btn--primary iridium-btn--smaller iridium-btn--radius" @click="search">查询</button>
+          <button class="iridium-btn iridium-btn--info iridium-btn--smaller iridium-btn--radius">项目导出</button>
+          <button class="iridium-btn iridium-btn--danger iridium-btn--smaller iridium-btn--radius">大区导出</button>
         </Col>
       </Row>
+      <Row type="flex" justify="start"><span class="iridium-badge iridium-badge--primary">默认时间段为当月第一天和最后一天</span></Row>
       <table class="iridium-table iridium-table--striped iridium-table--hover">
         <thead>
           <tr class="iridium-table-row">
-            <th class="iridium-table-title">序号</th>
-            <th class="iridium-table-title">移动标签ID</th>
-            <th class="iridium-table-title">移动标签名称</th>
-            <th class="iridium-table-title">出勤率</th>
-            <th class="iridium-table-title">覆盖率</th>
-            <th class="iridium-table-title">操作</th>
+            <th rowspan="3" class="iridium-table-title">项目名称</th>
+            <th rowspan="3" class="iridium-table-title">标签岗<br/>位数量</th>
+            <th colspan="3" rowspan="1" class="iridium-table-title">出勤情况</th>
+            <th colspan="2" rowspan="1" class="iridium-table-title">覆盖情况</th>
+            <th colspan="2" rowspan="1" class="iridium-table-title">抽查清理结果</th>
+            <th colspan="2" rowspan="1" class="iridium-table-title">报警情况</th>
+            <th colspan="2" class="iridium-table-title">补卡情况</th>
+            <th colspan="3" class="iridium-table-title">工资情况</th>
+            <th rowspan="3" class="iridium-table-title">备注</th>
           </tr>
+          <tr class="iridium-table-row">
+            <th rowspan="2" class="iridium-table-title">理论<br/>工时</th>
+            <th rowspan="2" class="iridium-table-title">出勤<br/>工时</th>
+            <th rowspan="2" class="iridium-table-title">出勤率<br/>（出勤工时/合同工时）</th>
+            <th rowspan="2" class="iridium-table-title">覆盖率</th>
+            <th rowspan="2" class="iridium-table-title">覆盖率<br/>考核工时数</th>
+            <th rowspan="2" class="iridium-table-title">抽查<br/>岗位数</th>
+            <th rowspan="2" class="iridium-table-title">清洁结果<br/>考核工时</th>
+            <th rowspan="2" class="iridium-table-title">聚岗考核<br/>工时数</th>
+            <th rowspan="2" class="iridium-table-title">漏岗考核<br/>工时数</th>
+            <th rowspan="2" class="iridium-table-title">补卡次数</th>
+            <th rowspan="2" class="iridium-table-title">补卡<br/>工时数</th>
+            <th rowspan="2" class="iridium-table-title">应得<br/>工时</th>
+            <th rowspan="2" class="iridium-table-title">工时单价<br/>（元）</th>
+            <th rowspan="2" class="iridium-table-title">实际工资<br/>（元）</th>
+          </tr>
+
         </thead>
         <tbody>
           <tr
@@ -79,7 +103,7 @@ const initPagination = (context, dataSource) => {
   })
 }
 export default {
-  name: 'AttendanceAndCoverage',
+  name: 'ProjectAttendanceMonthlyReport',
   components: {
     DatePicker,
     Select,
@@ -87,7 +111,7 @@ export default {
   },
   data () {
     return {
-      date: day().format('YYYY-MM-DD'),
+      dateRange: day().format('YYYY-MM-DD') + ' - ' + day().format('YYYY-MM-DD'),
       projects: [],
       list: [],
       query: {
@@ -95,7 +119,7 @@ export default {
         workTime: day().format('YYYY-MM-DD'),
         movingLabel: ''
       },
-      defaultUrl: this.$api.getAttendanceAndCoverage
+      defaultUrl: this.$api.ProjectAttendanceMonthlyReport
     }
   },
   created () {
@@ -161,5 +185,9 @@ export default {
 }
 .icon-item {
   padding: 0;
+}
+.iridium-badge {
+  padding: 5px;
+  margin-top:20px;
 }
 </style>
