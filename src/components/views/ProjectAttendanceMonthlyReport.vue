@@ -1,25 +1,17 @@
 <template>
   <section class="iridium-page">
-    <h5 class="iridium-page-title">员工出勤率与覆盖率统计</h5>
+    <h5 class="iridium-page-title">项目考勤月报表</h5>
     <div class="iridium-page-content">
       <Row type="flex" justify="start" :gutter="15">
         <Col>
-          时间：
+          工作时段：
           <DatePicker type="date"
             :placeholder="date"
             @on-change="pickerDate"
             >
           </DatePicker>
         </Col>
-        <Col>
-          移动标签名称：
-          <Select placeholder="标签名" v-model="query.projectId">
-            <Option v-for="item in projects" :value="item.projectId" :key="item.projectId">{{ item.name }}</Option>
-          </Select>
-        </Col>
-        <Col>
-          项目名称：
-          <Select placeholder="所属项目" v-model="query.projectId">
+          <Select placeholder="请选择" v-model="query.projectId">
             <Option v-for="item in projects" :value="item.projectId" :key="item.projectId">{{ item.name }}</Option>
           </Select>
         </Col>
@@ -135,6 +127,7 @@ export default {
           }
         })
       }
+      console.log(url)
       initPagination(this, url)
     },
     pickerDate (value) {

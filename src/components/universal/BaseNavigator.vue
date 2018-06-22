@@ -167,7 +167,7 @@ export default {
             },
             {
               title: '项目考勤月报表',
-              routeName: ''
+              routeName: 'ProjectAttendanceMonthlyReport'
             }
           ]
         },

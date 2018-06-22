@@ -66,15 +66,14 @@
         </thead>
         <tbody>
           <tr
-             v-for="item in list"
-             :key="item.id"
+             v-for="(item,index) in list"
+             :key="index"
              class="iridium-table-row">
             <td class="iridium-table-item">{{ item.labelId }}</td>
             <td class="iridium-table-item">{{ item.dateTime }}</td>
             <td class="iridium-table-item">{{ item.attendanceStartTime }}</td>
             <td class="iridium-table-item">{{ item.attendanceEndTime }}</td>
             <td class="iridium-table-item">{{ item.attendanceHours }}</td>
-            <td class="iridium-table-item">{{ item.attendanceRateWorkingHours }}</td>
             <td class="iridium-table-item">{{ item.points }}</td>
             <td class="iridium-table-item">{{ item.coveragePoint1 }}</td>
             <td class="iridium-table-item">{{ item.coveragePoint2 }}</td>
@@ -111,7 +110,7 @@ const initPagination = (context, dataSource) => {
     totalNumberLocator: (res) => {
       return res.data.totalCount
     },
-    pageRange: 6,
+    pageRange: 4,
     firstText: '首页',
     lastText: '末页',
     prevText: '上一页',
@@ -134,6 +133,7 @@ export default {
   },
   data () {
     return {
+      mockData: null,
       date: day().format('YYYY-MM-DD'),
       labels: [],
       projects: [],
@@ -169,23 +169,19 @@ export default {
     initPagination(this, this.defaultUrl)
   },
   methods: {
-    splicingSearchQuery (baseUrl, query) {
-      baseUrl += '?'
-      Object.entries(query).forEach((item, index, arr) => {
-        if (index === arr.length - 1) {
-          baseUrl += item.join('=')
-        } else {
-          baseUrl += item.join('=') + '&'
-        }
-      })
-      return baseUrl
-    },
     search () {
       // 获取开始时间
-      let url = ''
+      let url = this.defaultUrl
       // 处理查询字符串
       if (this.query.projectCode || this.query.workTime || this.query.labelId) {
-        url = this.splicingSearchQuery(this.defaultUrl, this.query)
+        url += '?'
+        Object.entries(this.query).forEach((item, index, arr) => {
+          if (index === arr.length - 1) {
+            url += item.join('=')
+          } else {
+            url += item.join('=') + '&'
+          }
+        })
       }
       initPagination(this, url)
     },
