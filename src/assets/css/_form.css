@@ -29,6 +29,7 @@
   text-align: left;
 
   @descendent label {
+    position: relative;
     display: inline;
     line-height: var(--formItemHeight);
   }
@@ -39,6 +40,27 @@
 
   @descendent input {
     @mixin generateFormItem;
+
+    &[type="checkbox"] {
+      position: absolute;
+      clip: rect(0, 0, 0, 0);
+    }
+    &[type="checkbox"] + i {
+      margin-top: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--primaryColorLight);
+      &::before {
+        content: '\e157';
+      }
+    }
+    &[type="checkbox"]:checked + i::before {
+      content: '\e067';
+    }
+    &[type="checkbox"]:disabled + i::before {
+      cursor: default;
+      color: #ccc;
+    }
   }
 
   @descendent textarea {

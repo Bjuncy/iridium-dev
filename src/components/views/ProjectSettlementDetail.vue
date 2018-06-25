@@ -9,6 +9,7 @@
       </router-link>
     </h5>
     <div class="iridium-page-content">
+      <common-loading :show="loading"/>
       <form class="iridium-form iridium-form--vertical">
         <Row :gutter="30">
           <Col span="6">
@@ -131,6 +132,7 @@
 
 <script>
 import { Row, Col } from 'iview'
+import CommonLoading from '@/components/universal/CommonLoading'
 import 'paginationjs'
 const initPagination = (context, dataSource) => {
   $('#pagination').pagination({
@@ -160,6 +162,7 @@ const initPagination = (context, dataSource) => {
     callback: (data, pagination) => {
       context.loading = false
       context.list = data
+      context.$spin.hide()
     }
   })
 }
@@ -167,7 +170,8 @@ export default {
   name: 'ProjectSettlementDetail',
   components: {
     Row,
-    Col
+    Col,
+    CommonLoading
   },
   data () {
     return {

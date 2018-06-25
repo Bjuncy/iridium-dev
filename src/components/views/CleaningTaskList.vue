@@ -54,8 +54,8 @@
                v-show="!showCheckbox"
             >{{ itemIndex + 1 }}</td>
             <td class="iridium-table-item text-center" v-show="showCheckbox">
-              <label>
-                <input type="checkbox"
+              <label class="iridium-form-label">
+                <input class="iridium-form-input" type="checkbox"
                   @change="addItem($event, item, itemIndex)"
                   :disabled="!item.isAssessment"
                 >
@@ -108,12 +108,106 @@
         </tbody>
       </table>
       <div id="pagination" class="pagination"></div>
+      <div class="clear">
+        <button v-show="showCheckbox"
+        class="
+          iridium-btn
+          iridium-btn--primary
+          iridium-btn--radius
+          left"
+       @click="edit">确定</button>
+      </div>
     </div>
+    <Modal
+      v-model="showEditModal"
+      title="任务操作"
+      width="400"
+      cancelText="关闭"
+      @on-ok="confirm"
+    >
+      <form class="iridium-form">
+        <label class="iridium-form-label">
+          <input class="iridium-form-input" type="checkbox" checked disabled>
+          <i class="glyphicon glyphicon-check"></i>
+          <strong>不考核</strong>
+        </label>
+        <textarea class="iridium-form-textarea" style="width: 100%; height: 100px; resize: none;" placeholder="请输入理由" v-model="reason"></textarea>
+        </div>
+      </form>
+    </Modal>
+    <Modal
+      v-model="showDetailModal"
+      type="info"
+      title="任务详情"
+      okText="关闭"
+    >
+      <form class="iridium-form">
+        <Row type="flex" justify="start" align="top">
+          <Col span="4"><label class="iridium-form-label">任务单号：</label></Col>
+          <Col span="20">{{ detailItem.taskCode }}</Col>
+        </Row>
+        <Row type="flex" justify="start" align="top">
+          <Col span="4"><label class="iridium-form-label">任务标题：</label></Col>
+          <Col span="20">{{ detailItem.taskTitle }}</Col>
+        </Row>
+        <Row type="flex" justify="start" align="top">
+          <Col span="4"><label class="iridium-form-label">反馈区域：</label></Col>
+          <Col span="20">{{ detailItem.area }}</Col>
+        </Row>
+        <Row type="flex" justify="start" align="top">
+          <Col span="4"><label class="iridium-form-label">报事时间：</label></Col>
+          <Col span="8">{{ detailItem.createTime || '-' }}</Col>
+          <Col span="4"><label class="iridium-form-label">挂起：</label></Col>
+          <Col span="8">{{ detailItem.isHangup ? '是' : '否' }}</Col>
+        </Row>
+        <Row type="flex" justify="start" align="top">
+          <Col span="4"><label class="iridium-form-label">反馈时间：</label></Col>
+          <Col span="8">{{ detailItem.feedbackTime || '-' }}</Col>
+          <Col span="4"><label class="iridium-form-label">不考核：</label></Col>
+          <Col span="8">{{ detailItem.isAssessment ? '否' : '是' }}</Col>
+        </Row>
+        <Row type="flex" justify="start" align="top">
+          <Col span="4"><label class="iridium-form-label">验证时间：</label></Col>
+          <Col span="20">{{ detailItem.checkTime || '-' }}</Col>
+        </Row>
+        <Row type="flex" justify="start" align="top">
+          <Col span="4"><label class="iridium-form-label">事件等级：</label></Col>
+          <Col span="20">{{ detailItem.eventRank || '-' }}</Col>
+        </Row>
+        <Row type="flex" justify="start" align="top">
+          <Col span="4"><label class="iridium-form-label">结算记录：</label></Col>
+          <Col span="20">
+            <table class="iridium-table">
+              <thead>
+                <tr class="iridium-table-row">
+                  <th class="iridium-table-title" width="30%">时间</th>
+                  <th class="iridium-table-title" width="35%">结算</th>
+                  <th class="iridium-table-title" width="35%">原因</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="(item, index) in detailItem.settleRecords"
+                  :key="index" class="iridium-table-row"
+                >
+                  <td class="iridium-table-item text-center">{{ item.settleTime }}</td>
+                  <td class="iridium-table-item">
+                    {{ switchSettlementText(item) }}
+                    <span v-if="item.isChargeOff" class="badge danger" >冲账</span>
+                  </td>
+                  <td class="iridium-table-item">{{ item.reason }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </Col>
+        </Row>
+      </form>
+    </Modal>
   </section>
 </template>
 
 <script>
-import { DatePicker, Select, Option } from 'iview'
+import { DatePicker, Select, Option, Modal } from 'iview'
 import day from 'dayjs'
 import 'paginationjs'
 const initPagination = (context, dataSource) => {
@@ -142,7 +236,8 @@ export default {
   components: {
     DatePicker,
     Select,
-    Option
+    Option,
+    Modal
   },
   data () {
     return {
@@ -233,7 +328,7 @@ export default {
             this.showDetailModal = true
             this.detailItem = res.data.data
           } else {
-            this.$message.error({content: res.msg})
+            this.$message.error({content: res.data.msg})
           }
         })
     },
@@ -279,12 +374,12 @@ export default {
       // 提交保洁任务数据
       this.$axios.post(this.$api.modifyCleaningTasks, params)
         .then(res => {
-          if (res.code === 0) {
+          if (res.data.code === 0) {
             this.$message.success('您操作的菜单已经保存成功。')
             // 更新页面
             this.updateListAssessment(this.editList)
           } else {
-            this.$message.error({content: res.msg})
+            this.$message.error({content: res.data.msg})
           }
           this.closeEditModal()
         })
@@ -299,4 +394,19 @@ export default {
 </script>
 
 <style scoped>
+.ivu-btn.ivu-btn-text {
+  display: none !important;
+}
+.ivu-modal  {
+  & .iridium-table {
+    margin: 0;
+  }
+  & .iridium-form-label {
+    font-weight: bold;
+    line-height: 1;
+  }
+}
+.ivu-col {
+  margin-bottom: 15px;
+}
 </style>

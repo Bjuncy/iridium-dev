@@ -4,7 +4,9 @@
     <main class="iridium-main">
       <base-header/>
       <article>
-        <router-view/>
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
       </article>
     </main>
   </div>
