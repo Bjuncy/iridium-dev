@@ -1,6 +1,7 @@
 export default {
   install (Vue) {
     let baseUrl = 'rest/'
+    // let api = 'api/'
     Vue.prototype.$api = {
       authority: baseUrl + 'authority',
       userInfo: baseUrl + 'employees/me',
