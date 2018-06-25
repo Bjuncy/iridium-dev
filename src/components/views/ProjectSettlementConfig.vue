@@ -69,8 +69,6 @@
       v-model="showModal"
       title="项目结算配置"
       width="600"
-      okText="确定"
-      @on-ok="confirm"
     >
       <Form ref="formValidate" :model="item" :rules="ruleValidate" :label-width="200">
         <FormItem label="项目名称" prop="projectName">
@@ -80,18 +78,18 @@
           <input class="iridium-form-input full" v-model="item.forceClosePeriod" placeholder="0" />
         </FormItem>
         <FormItem label="当日“需完成任务”的最迟报单时刻" prop="latestEventTime">
-          <time-picker class="full" format="HH:mm" type="time" placeholder="时:分"></time-picker>
+          <time-picker class="full" format="HH:mm" type="time" placeholder="时:分" :value="item.latestEventTime"></time-picker>
         </FormItem>
         <FormItem label="最晚反馈时间" prop="latestFeedbackTime">
-          <time-picker class="full" format="HH:mm" type="time" placeholder="时:分"></time-picker>
+          <time-picker class="full" format="HH:mm" type="time" placeholder="时:分" :value="item.latestFeedbackTime"></time-picker>
         </FormItem>
         <FormItem label="最晚验证时间" prop="latestVerifyTime">
-          <time-picker class="full" format="HH:mm" type="time" placeholder="时:分"></time-picker>
+          <time-picker class="full" format="HH:mm" type="time" placeholder="时:分" :value="item.latestVerifyTime"></time-picker>
         </FormItem>
         <FormItem label="最长挂起时限" prop="maxHangupPeriod">
             <input class="iridium-form-input full" v-model="item.maxHangupPeriod" placeholder="0" />
         </FormItem>
-        <FormItem label="事件等级" prop="eventRanks">
+        <FormItem label="事件等级">
           <Row>
             <Col span="24"
               v-for="(rank, index) in item.eventRanks"
@@ -121,72 +119,17 @@
           </Row>
         </FormItem>
       </Form>
-      <!-- <Form class="iridium-form">
-        <Row type="flex" justify="start" align="top">
-          <Col span="4"><label class="iridium-form-label">项目名称</label></Col>
-          <Col span="20">
-            <input type="text" readonly
-              class="iridium-form-input disabled"
-              :value="item.projectName"/>
-          </Col>
-        </Row>
-        <Row type="flex" justify="start" align="top">
-          <Col span="4"><label class="iridium-form-label">强制关闭时间</label></Col>
-          <Col span="20">
-            <input type="text"
-              class="iridium-form-input"
-              :value="item.projectName"/></Col>
-        </Row>
-        <Row type="flex" justify="start" align="top">
-          <Col span="4"><label class="iridium-form-label">当日“需完成任务”的最迟报单时刻</label></Col>
-          <Col span="20">{{ detailItem.area }}</Col>
-        </Row>
-        <Row type="flex" justify="start" align="top">
-          <Col span="4"><label class="iridium-form-label">最晚反馈时间</label></Col>
-          <Col span="20">{{ detailItem.createTime || '-' }}</Col>
-        </Row>
-        <Row type="flex" justify="start" align="top">
-          <Col span="4"><label class="iridium-form-label">最晚验证时间</label></Col>
-          <Col span="20">{{ detailItem.feedbackTime || '-' }}</Col>
-        </Row>
-        <Row type="flex" justify="start" align="top">
-          <Col span="4"><label class="iridium-form-label">最长挂起时限</label></Col>
-          <Col span="20">{{ detailItem.checkTime || '-' }}</Col>
-        </Row>
-        <Row type="flex" justify="start" align="top">
-          <Col span="4"><label class="iridium-form-label">事件等级</label></Col>
-          <Col span="20">
-            <table class="iridium-table">
-              <thead>
-                <tr class="iridium-table-Row">
-                  <th class="iridium-table-title" width="30%">时间</th>
-                  <th class="iridium-table-title" width="35%">结算</th>
-                  <th class="iridium-table-title" width="35%">原因</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr
-                  v-for="(item, index) in detailItem.settleRecords"
-                  :key="index" class="iridium-table-Row"
-                >
-                  <td class="iridium-table-item text-center">{{ item.settleTime }}</td>
-                  <td class="iridium-table-item">
-                    {{ switchSettlementText(item) }}
-                    <span v-if="item.isChargeOff" class="badge danger" >冲账</span>
-                  </td>
-                  <td class="iridium-table-item">{{ item.reason }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </Col>
-        </Row>
-      </Form> -->
+      <div slot="footer">
+        <Button type="text" size="large" @click="cancel">取消</Button>
+        <Button type="primary" size="large" @click="confirm">确定</Button>
+      </div>
     </modal>
   </section>
 </template>
 
 <script>
-import { Row, Col, TimePicker, Form, FormItem, Select, Option, Modal } from 'iview'
+import Vue from 'vue'
+import { Row, Col, Button, TimePicker, Form, FormItem, Select, Option, Modal } from 'iview'
 import CommonLoading from '@/components/universal/CommonLoading'
 import _ from 'lodash'
 import 'paginationjs'
@@ -216,6 +159,7 @@ export default {
   components: {
     Row,
     Col,
+    Button,
     TimePicker,
     Form,
     FormItem,
@@ -241,7 +185,7 @@ export default {
       ],
       ruleValidate: {
         forceClosePeriod: [
-          { required: true, message: '不能为空', trigger: 'blur' }
+          { required: true, message: '不能为空', trigger: 'blur', type: 'number' }
         ],
         latestEventTime: [
           { required: true, type: 'string', message: '不能为空', trigger: 'change' }
@@ -253,7 +197,7 @@ export default {
           { required: true, type: 'string', message: '不能为空', trigger: 'change' }
         ],
         maxHangupPeriod: [
-          { required: true, message: '不能为空', trigger: 'blur' }
+          { required: true, message: '不能为空', trigger: 'blur', type: 'number' }
         ],
         eventRanks: [
           { required: true, message: '不能为空', trigger: 'blur' }
@@ -292,29 +236,29 @@ export default {
       })
       this.showModal = true
     },
-    closeModal () {
-      this.showModal = false
-      $('#projectbillManageForm').validate().destroy()
-    },
     switchUnit (rank) {
       rank.unit = rank.handleType === 'working_hours' ? '工时' : '元'
+    },
+    cancel () {
+      this.showModal = false
     },
     confirm () {
       this.$refs['formValidate'].validate((valid) => {
         if (valid) {
+          this.showModal = false
           this.$axios.get(this.$api.modifyProjectSettlementConfig(this.item), this.item)
             .then(res => {
               if (res.data.code === 0) {
-                this.$message.success({content: '您操作的菜单已经保存成功。'})
+                this.$message.success('您操作的菜单已经保存成功。')
                 let index = ''
                 this.list.forEach((item, i) => {
                   if (item.projectCode === this.editingProject) {
                     index = i
                   }
                 })
-                this.set(this.list, index, this.item)
+                Vue.set(this.list, index, this.item)
               } else {
-                this.$message.error({content: res.data.msg})
+                this.$message.error(res.data.msg)
               }
             })
         }

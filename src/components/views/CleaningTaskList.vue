@@ -266,7 +266,7 @@ export default {
         if (res.data.code === 0) {
           this.projects = res.data.data
         } else {
-          this.$message.error({content: res.data.msg})
+          this.$message.error(res.data.msg)
         }
       })
   },
@@ -328,7 +328,7 @@ export default {
             this.showDetailModal = true
             this.detailItem = res.data.data
           } else {
-            this.$message.error({content: res.data.msg})
+            this.$message.error(res.data.msg)
           }
         })
     },
@@ -350,7 +350,7 @@ export default {
         this.editList = [item]
       }
       if (!this.editList.length) {
-        this.$message.warning({content: '请至少选择一项任务！'})
+        this.$message.warning('请至少选择一项任务！')
         return
       }
       this.showEditModal = true
@@ -364,7 +364,7 @@ export default {
     },
     confirm () {
       if (!this.reason) {
-        this.$message.warning({content: '请填写原因！'})
+        this.$message.warning('请填写原因！')
         return
       }
       let params = {
@@ -379,7 +379,7 @@ export default {
             // 更新页面
             this.updateListAssessment(this.editList)
           } else {
-            this.$message.error({content: res.data.msg})
+            this.$message.error(res.data.msg)
           }
           this.closeEditModal()
         })

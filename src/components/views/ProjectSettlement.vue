@@ -291,7 +291,7 @@ const initPagination = (context, dataSource) => {
       } else {
         context.summary = {}
         context.hideSettleBtn = true
-        this.$message.error({content: '暂无数据！'})
+        this.$message.error('暂无数据！')
       }
       return res.data.totalCount
     },
@@ -368,7 +368,7 @@ export default {
         if (res.data.code === 0) {
           this.projects = res.data.data
         } else {
-          this.$message.error({content: res.data.msg})
+          this.$message.error(res.data.msg)
         }
       })
   },
@@ -395,7 +395,7 @@ export default {
       ) {
         url = this.splicingSearchQuery(this.defaultUrl, this.query)
       } else {
-        this.$message.info({ content: '请选择项目和结算月份！' })
+        this.$message.warning('请选择项目和结算月份！')
         return
       }
       initPagination(this, url)
@@ -418,7 +418,7 @@ export default {
     },
     selectSettler () {
       if (!this.query.projectId) {
-        this.$message.info({ content: '请先选择项目！' })
+        this.$message.warning('请先选择项目！')
         return
       }
       // 选择结算人
@@ -431,7 +431,7 @@ export default {
       this.disableScanBtn = true
       param.id = this.settleClerk.value
       if (!param.id) {
-        this.$message.info({ content: '请选择结算责任人！' })
+        this.$message.warning('请选择结算责任人！')
       }
       this.$spin.show({
         render: (h) => {
@@ -472,10 +472,10 @@ export default {
               })
             }
           } else {
-            this.$message.error({ content: '请检查设备是否连接成功。' })
+            this.$message.error('请检查设备是否连接成功。')
           }
         }).catch(() => {
-          this.$message.error({ content: '服务器内部错误' })
+          this.$message.error('服务器内部错误')
         })
     },
     settle () {
@@ -492,7 +492,7 @@ export default {
             this.duplicatedRecords = res.data.data
             this.showSettleConflictModal = true
           } else {
-            this.$message.error({content: res.data.msg})
+            this.$message.error(res.data.msg)
           }
         })
     },

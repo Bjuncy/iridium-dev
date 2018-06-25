@@ -137,7 +137,7 @@ export default {
         if (res.data.code === 0) {
           this.projects = res.data.data
         } else {
-          this.$message.error({content: res.data.msg})
+          this.$message.error(res.data.msg)
         }
       })
   },
