@@ -119,7 +119,7 @@ export default {
         workTime: day().format('YYYY-MM-DD'),
         movingLabel: ''
       },
-      defaultUrl: this.$api.ProjectAttendanceMonthlyReport
+      defaultUrl: this.$api.getProjectAttendanceMonthlyReport
     }
   },
   created () {
