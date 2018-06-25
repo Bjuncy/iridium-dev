@@ -1,18 +1,18 @@
 export default {
   install (Vue) {
     let baseUrl = 'rest/'
-    // let api = 'api/'
+    let api = 'api/'
     Vue.prototype.$api = {
-      authority: baseUrl + 'authority',
-      userInfo: baseUrl + 'employees/me',
-      getDictionaries: baseUrl + 'dictionaries',
+      authority: api + 'authority',
+      userInfo: api + 'employees/me',
+      getDictionaries: api + 'dictionaries',
       getProjects: baseUrl + 'projects',
       // 统计报表
-      getDailySheet: baseUrl + 'report/dailySheetList',
-      getMovingLabel: baseUrl + 'movingLabel',
-      getMonthlySheet: baseUrl + 'report/monthlySheetList',
-      getAttendanceAndCoverage: baseUrl + 'report/attendanceAndCoverage',
-      getProjectAttendanceMonthlyReport: baseUrl + 'report/projectAttendanceMonthlyReport'
+      getDailySheet: api + 'report/dailySheetList',
+      getMovingLabel: api + 'movingLabel',
+      getMonthlySheet: api + 'report/monthlySheetList',
+      getAttendanceAndCoverage: api + 'report/attendanceAndCoverage',
+      getProjectAttendanceMonthlyReport: api + 'report/projectAttendanceMonthlyReport',
       // 保洁任务
       getCleaningTasks: baseUrl + 'project/cleaningTasks',
       getCleaningTaskDetail (params) {
