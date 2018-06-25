@@ -6,6 +6,12 @@ export default {
       userInfo: baseUrl + 'employees/me',
       getDictionaries: baseUrl + 'dictionaries',
       getProjects: baseUrl + 'projects',
+      // 统计报表
+      getDailySheet: baseUrl + 'report/dailySheetList',
+      getMovingLabel: baseUrl + 'movingLabel',
+      getMonthlySheet: baseUrl + 'report/monthlySheetList',
+      getAttendanceAndCoverage: baseUrl + 'report/attendanceAndCoverage',
+      getProjectAttendanceMonthlyReport: baseUrl + 'report/projectAttendanceMonthlyReport'
       // 保洁任务
       getCleaningTasks: baseUrl + 'project/cleaningTasks',
       getCleaningTaskDetail (params) {

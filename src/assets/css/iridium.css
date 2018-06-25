@@ -105,6 +105,10 @@ article {
 .flex-1{
   flex: 1;
 }
+a:hover{
+  color: var(--aHoverColor);
+  background: var(--aHoverBgColor);
+}
 .aDisable:hover{
   color: var(--aDefaultColor);
   background: var(--bgColor);

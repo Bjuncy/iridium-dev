@@ -116,4 +116,7 @@
 .ivu-time-picker-cells-cell-selected,.ivu-time-picker-cells-cell-selected:hover {
     color: var(--primaryColor);
 }
+.ivu-input-icon-normal+.ivu-input {
+    padding-right:40px;
+}
 

@@ -163,11 +163,11 @@ export default {
             },
             {
               title: '员工出勤率与覆盖率统计',
-              routeName: ''
+              routeName: 'AttendanceAndCoverage'
             },
             {
               title: '项目考勤月报表',
-              routeName: ''
+              routeName: 'ProjectAttendanceMonthlyReport'
             }
           ]
         },

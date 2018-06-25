@@ -67,7 +67,6 @@ export default {
   }
 }
 </script>
-
 <style>
 body {
   color: #273A4A;
