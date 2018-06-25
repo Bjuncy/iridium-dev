@@ -20,14 +20,8 @@ select {
  /* format style */
   width: 100%;
   border: 1px solid var(--borderColor);
-<<<<<<< HEAD
-  background: url("../images/icons/select-arrow.svg") no-repeat scroll right center / auto 80% var(--white);
-  box-sizing: border-box;
-  cursor: pointer;
-=======
   background: url("../images/icons/select-arrow.svg") no-repeat scroll right center / 12% 60% var(--white);
   font-size: var(--fontBase);
->>>>>>> upstream/master
   height: var(--formItemHeight);
   margin: 1px;
   padding: var(--paddingBase);

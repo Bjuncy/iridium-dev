@@ -15,9 +15,9 @@ export default {
       getSettledProjectDetail (params) {
         return baseUrl + `projects/${params.projectId}/settleDetails`
       },
-      getDailySheet: baseUrl + 'report/reportList',
+      getDailySheet: baseUrl + 'report/dailySheetList',
       getMovingLabel: baseUrl + 'movingLabel',
-      getMonthlySheet: baseUrl + 'report/reportAllList',
+      getMonthlySheet: baseUrl + 'report/monthlySheetList',
       getAttendanceAndCoverage: baseUrl + 'report/attendanceAndCoverage',
       getProjectAttendanceMonthlyReport: baseUrl + 'report/projectAttendanceMonthlyReport'
     }
