@@ -29,7 +29,6 @@ const DemoRouters = [
     component: DemoList
   }
 ]
-
 routers = process.env.NODE_ENV !== 'production'
   ? PageRouters.concat(DemoRouters)
   : PageRouters
