@@ -13,6 +13,10 @@ export default {
       getMonthlySheet: api + 'report/monthlySheetList',
       getAttendanceAndCoverage: api + 'report/attendanceAndCoverage',
       getProjectAttendanceMonthlyReport: api + 'report/projectAttendanceMonthlyReport',
+      // 移动标签补卡
+      getMoveTabs: api + 'checkInformation/MoveTabsList',
+      // 抽查信息录入
+      getCheckInfomationInput: api + 'checkInformation/CheckInfomationInputList',
       // 保洁任务
       getCleaningTasks: baseUrl + 'project/cleaningTasks',
       getCleaningTaskDetail (params) {
