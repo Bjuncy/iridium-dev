@@ -35,17 +35,20 @@
     }
 
 }
-.ivu-icon-ios-calendar-outline:before, .ivu-input-icon:before {
+.ivu-icon-ios-calendar-outline:before {
     content: "\f073";
     font-family: FontAwesome;
     font-style: normal;
 }
-
+.ivu-icon-ios-clock-outline:before{
+    content: "\e023";
+    font-family: 'Glyphicons Halflings';
+}
 .ivu-input-icon {
     width:40px;
     height: 32px;
     line-height: 32px;
-    font-size: var(--fontBase);
+    font-size: 16px;
     text-align: center;
     color: var(--fontColorNormal);
     position: absolute;

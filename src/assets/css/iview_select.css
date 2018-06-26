@@ -34,3 +34,9 @@
     min-width: 98% !important;
   }
 }
+.ivu-modal-body .ivu-select-selection {
+  min-width: 80% !important;
+}
+.ivu-select{
+  width: auto;
+}

@@ -111,11 +111,11 @@ export default {
           sub: [
             {
               title: '移动标签补卡',
-              routeName: ''
+              routeName: 'MoveTabs'
             },
             {
               title: '抽查信息录入',
-              routeName: ''
+              routeName: 'CheckInfomationInput'
             }
           ]
         },

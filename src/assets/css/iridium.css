@@ -20,6 +20,8 @@
 @import 'iview_pagination.css';
 @import 'iview_notice.css';
 @import 'iview_spin.css';
+@import '_textarea.css';
+@import '_modal.css';
 
 body {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

@@ -8,6 +8,7 @@ import DemoList from '@/components/demo/DemoList'
 // import alarmInfo from './alarmInfo'
 import statisticalReport from './statisticalReport'
 import qualityControl from './qualityControl'
+import checkInfo from './checkInfo'
 // import systemConfig from './systemConfig'
 
 Vue.use(Router)
@@ -19,7 +20,8 @@ const PageRouters = [
   // ...baseInfo,
   // ...alarmInfo,
   ...statisticalReport,
-  ...qualityControl
+  ...qualityControl,
+  ...checkInfo
   // ...systemConfig
 ]
 const DemoRouters = [
